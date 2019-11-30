@@ -6,6 +6,8 @@
     flex-direction: row;
     min-height: 54px;
     max-height: 54px;
+    position: sticky;
+    top: 0;
 }
 
 .header > .buttons-wrapper {

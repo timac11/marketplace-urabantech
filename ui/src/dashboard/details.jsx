@@ -1,9 +1,13 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core";
+import {makeStyles, useTheme} from "@material-ui/core";
 import ChartProvider from "../components/chart/ChartProvider";
 import Typography from "@material-ui/core/Typography/Typography";
 import Rating from '@material-ui/lab/Rating';
 import Box from "@material-ui/core/Box/Box";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Container from "@material-ui/core/Container/Container";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,12 +26,54 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+function TabPanel(props) {
+    const {children, value, index, ...other} = props;
+
+    if (!index) {
+        return (
+            <Container hidden={value !== index}>
+                <Box paddingLeft="16px" marginTop="16px">
+                    <div style={{display: "flex", height: "200px", justifyContent: "space-between"}}>
+                        <div style={{width: "25%"}}>
+                            <ChartProvider chart={buildPieChartConfig("CPU", 64)}/>
+                        </div>
+                        <div style={{width: "25%"}}>
+                            <ChartProvider chart={buildPieChartConfig("RAM", 22)}/>
+                        </div>
+                        <div style={{width: "25%"}}>
+                            <ChartProvider chart={buildPieChartConfig("Load", 84)}/>
+                        </div>
+                    </div>
+                </Box>
+                <div style={{height: "100px", padding: "12px"}}>
+                    <ChartProvider chart={buildActivityGraph()}/>
+                </div>
+            </Container>
+        )
+    }
+
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            <Box p={3}>{children}</Box>
+        </Typography>
+    );
+}
+
 export function Details() {
     const classes = useStyles();
+    const [activeTab, setActiveTab] = React.useState(0);
+    const theme = useTheme();
 
     return (
         <div className={classes.root}>
-            <Box paddingLeft="16px">
+            <Box paddingLeft="16px" marginBottom="16px">
                 <Typography variant="h5" paragraph={true}>Base parameters</Typography>
                 <Box>
                     <Typography display="inline">Description: </Typography>
@@ -38,25 +84,36 @@ export function Details() {
                     <Rating name="read-only" value={4} readOnly/>
                 </Box>
             </Box>
-            <Box paddingLeft="16px" marginTop="16px">
-                <Typography variant="h5" paragraph={true}>Technical parameters</Typography>
-                <div style={{display: "flex", height: "200px", justifyContent: "space-between"}}>
-                    <div style={{width: "25%"}}>
-                        <ChartProvider chart={buildPieChartConfig("CPU", 64)}/>
-                    </div>
-                    <div style={{width: "25%"}}>
-                        <ChartProvider chart={buildPieChartConfig("RAM", 22)}/>
-                    </div>
-                    <div style={{width: "25%"}}>
-                        <ChartProvider chart={buildPieChartConfig("Load", 84)}/>
-                    </div>
-                </div>
-            </Box>
-            <div style={{height: "100px", padding: "12px"}}>
-                <ChartProvider chart={buildActivityGraph()}/>
-            </div>
+            <AppBar position="static" color="default">
+                <Tabs
+                    value={activeTab}
+                    onChange={(event, value) => {
+                        setActiveTab(value)
+                    }}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="full width tabs example"
+                >
+                    <Tab label="Technical Parameters" {...a11yProps(0)}/>
+                    <Tab label="Products parameters" {...a11yProps(1)}/>
+                </Tabs>
+            </AppBar>
+            <TabPanel value={activeTab} index={0} dir={theme.direction}>
+                Item One
+            </TabPanel>
+            <TabPanel value={activeTab} index={1} dir={theme.direction}>
+                Item Two
+            </TabPanel>
         </div>
     )
+}
+
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
+    };
 }
 
 function buildPieChartConfig(name, percentage) {
