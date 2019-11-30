@@ -12,7 +12,7 @@ ReactDOM.render(
         <CssBaseline/>
         <Router>
             <Switch>
-                <Route path='/wizard' component={Main}/>
+                <Route path='/' component={Main}/>
                 <Route path='/login' component={Login}/>
             </Switch>
         </Router>
