@@ -78,6 +78,7 @@ const ProductCard = ({avatarSrc, description, cost, averageRate, type}) => {
 };
 
 ProductCard.propTypes = {
+    id: PropTypes.string,
     avatarSrc: PropTypes.string,
     description: PropTypes.string,
     cost: PropTypes.number,

@@ -9,6 +9,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {Search} from "@material-ui/icons";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 const stubData = [
     {
         averageRate: 4,
+        id: 1,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
@@ -31,6 +33,7 @@ const stubData = [
     },
     {
         averageRate: 4,
+        id: 2,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
@@ -38,6 +41,7 @@ const stubData = [
     },
     {
         averageRate: 4,
+        id: 3,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
@@ -45,6 +49,7 @@ const stubData = [
     },
     {
         averageRate: 4,
+        id: 4,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
@@ -73,9 +78,11 @@ const MainPage = ({id}) => {
                     </FormControl>
                 </Box>
                 {
-                    stubData.map((value, index) => (<ProductCard
-                        {...value} key={index}
-                    />))
+                    stubData.map((value, index) => (<NavLink to={`product/${value.id}`} style={{textDecoration: 'none'}}>
+                        <ProductCard
+                            {...value} key={index}
+                        />
+                    </NavLink>))
                 }
 
             </Box>

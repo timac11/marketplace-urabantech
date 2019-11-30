@@ -14,7 +14,6 @@ ReactDOM.render(
         <Header/>
         <Router>
             <TreeRootRouter>
-                <MainPage id={1}/>
             </TreeRootRouter>
         </Router>
     </ThemeProvider>,
