@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './dashboard/main'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider} from '@material-ui/styles';
 import theme from "./theme/theme";
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
-import Login from "./dashboard/login";
+import {BrowserRouter as Router} from 'react-router-dom';
 import {TreeRootRouter} from "./routes/TreeRouter/TreeRootRouter";
 import MainPage from "./pages/main-page/MainPage";
+import Header from "./components/header/header";
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <MainPage id={1}/>
+        <Header/>
+        <Router>
+            <TreeRootRouter>
+                <MainPage id={1}/>
+            </TreeRootRouter>
+        </Router>
     </ThemeProvider>,
     document.getElementById('app')
 );

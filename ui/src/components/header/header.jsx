@@ -2,7 +2,6 @@ import React from 'react';
 import './header.css';
 import Box from "@material-ui/core/Box/Box";
 import User from "../../resources/img/user.jpg"
-import Button from "@material-ui/core/Button/Button";
 import {makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
@@ -31,15 +30,15 @@ const Header = () => {
     return (
         <div className="header">
             <Box fontSize="h6.fontSize">
-                <div className="prod-name">Hooliguns Production</div>
+                <div className="prod-name">Startblock</div>
             </Box>
             <div className="user-info">
-                <div className="user-name">Maxim Maslov</div>
+                <div className="user-name">Антон Печеркин</div>
                 <img className="user-photo" src={User}/>
                 <div className="logout-button"
-                    onClick={() => logout()}
+                     onClick={() => logout()}
                 >
-                    Logout
+                    Выйти
                 </div>
             </div>
         </div>
