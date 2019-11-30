@@ -12,7 +12,7 @@ import MainPage from "./pages/main-page/MainPage";
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <MainPage/>
+        <MainPage id={1}/>
     </ThemeProvider>,
     document.getElementById('app')
 );
