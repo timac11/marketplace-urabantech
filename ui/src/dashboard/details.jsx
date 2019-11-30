@@ -8,6 +8,7 @@ import AppBar from "@material-ui/core/AppBar/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Container from "@material-ui/core/Container/Container";
+import {activityData} from "../stabs/stabFile";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -135,7 +136,7 @@ function buildPieChartConfig(name, percentage) {
             text: `${name}: ${percentage}%`,
             align: 'center',
             verticalAlign: 'middle',
-            y: 10
+            y: 14
         },
         tooltip: {
             headerFormat: ''
@@ -210,58 +211,7 @@ function buildActivityGraph() {
         series: [{
             type: 'area',
             name: 'Активность',
-            data: [[
-                1167609600000,
-                0.7537
-            ],
-                [
-                    1167696000000,
-                    0.7537
-                ],
-                [
-                    1167782400000,
-                    0.7559
-                ],
-                [
-                    1167868800000,
-                    0.7631
-                ],
-                [
-                    1167955200000,
-                    0.7644
-                ],
-                [
-                    1168214400000,
-                    0.769
-                ],
-                [
-                    1168300800000,
-                    0.7683
-                ],
-                [
-                    1168387200000,
-                    0.77
-                ],
-                [
-                    1168473600000,
-                    0.7703
-                ],
-                [
-                    1168560000000,
-                    0.7757
-                ],
-                [
-                    1168819200000,
-                    0.7728
-                ],
-                [
-                    1168905600000,
-                    0.7721
-                ],
-                [
-                    1168992000000,
-                    0.7748
-                ]]
+            data: activityData
         }]
     }
 }
