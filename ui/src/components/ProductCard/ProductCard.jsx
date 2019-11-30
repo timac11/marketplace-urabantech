@@ -78,7 +78,7 @@ const ProductCard = ({avatarSrc, description, cost, averageRate, type}) => {
 };
 
 ProductCard.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.number,
     avatarSrc: PropTypes.string,
     description: PropTypes.string,
     cost: PropTypes.number,

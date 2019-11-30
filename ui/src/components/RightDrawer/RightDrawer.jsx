@@ -7,7 +7,7 @@ import "./react-datepicker.css";
 import Button from "@material-ui/core/Button";
 
 RightDrawer.propTypes = {
-    id: PropTypes.number.isRequired
+    id: PropTypes.number
 }
 
 

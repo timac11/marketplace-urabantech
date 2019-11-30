@@ -4,7 +4,7 @@ import {Avatar} from "../Avatar/Avatar";
 import PropTypes from "prop-types";
 
 LeftDrawer.propTypes = {
-    id: PropTypes.number.isRequired
+    id: PropTypes.number
 }
 
 const useStyles = makeStyles(theme => ({

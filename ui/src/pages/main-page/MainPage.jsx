@@ -78,9 +78,9 @@ const MainPage = ({id}) => {
                     </FormControl>
                 </Box>
                 {
-                    stubData.map((value, index) => (<NavLink to={`product/${value.id}`} style={{textDecoration: 'none'}}>
+                    stubData.map((value, index) => (<NavLink to={`product/${value.id}`} key={index} style={{textDecoration: 'none'}}>
                         <ProductCard
-                            {...value} key={index}
+                            {...value}
                         />
                     </NavLink>))
                 }
