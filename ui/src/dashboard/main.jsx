@@ -133,9 +133,9 @@ export default function Main() {
 
     let authRedirect = null;
 
-    if (localStorage.getItem('isLogin') !== 'true') {
-        authRedirect = <Redirect to="/login"/>;
-    }
+    //if (localStorage.getItem('isLogin') !== 'true') {
+    //    authRedirect = <Redirect to="/login"/>;
+    //}
 
     let loading = null;
     if (isLoading) {
