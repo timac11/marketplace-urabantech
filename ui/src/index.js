@@ -7,30 +7,12 @@ import theme from "./theme/theme";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 import Login from "./dashboard/login";
 import {TreeRootRouter} from "./routes/TreeRouter/TreeRootRouter";
+import MainPage from "./pages/main-page/MainPage";
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Router>
-            <TreeRootRouter >
-                Hello
-                <Link to={'/product/1'} >
-                    Consumer 1
-                </Link>
-                <Link to={'/product/2'} >
-                    Consumer 1
-                </Link>
-                <Link to={'/product/3'} >
-                    Consumer 1
-                </Link>
-                <Link to={'/product/4'} >
-                    Consumer 1
-                </Link>
-                <Link to={'/product/5'} >
-                    Consumer 1
-                </Link>
-            </TreeRootRouter>
-        </Router>
+        <MainPage/>
     </ThemeProvider>,
     document.getElementById('app')
 );

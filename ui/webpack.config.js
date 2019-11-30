@@ -51,10 +51,25 @@ module.exports = {
                     loader: 'worker-loader'
                 }
             },
+            {
+                test: /-import-icon.svg$/,
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'react-svg-loader',
+                        options: {
+                            svgo: {
+                                plugins: [{ removeTitle: false }],
+                                floatPrecision: 2
+                            }
+                        }
+                    }
+                ]
+            }
         ],
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        extensions: ['*', '.js', '.jsx', '.svg', '.ico', '.png']
     },
     devServer: {
         historyApiFallback: true,
