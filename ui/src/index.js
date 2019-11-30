@@ -5,14 +5,13 @@ import {ThemeProvider} from '@material-ui/styles';
 import theme from "./theme/theme";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {TreeRootRouter} from "./routes/TreeRouter/TreeRootRouter";
-import MainPage from "./pages/main-page/MainPage";
 import Header from "./components/header/header";
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Header/>
         <Router>
+            <Header/>
             <TreeRootRouter>
             </TreeRootRouter>
         </Router>

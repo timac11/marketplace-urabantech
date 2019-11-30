@@ -20,9 +20,5 @@ export const firstLevelRouterWithoutId = [
     {
         name: 'login',
         component: () => <Login/>
-    },
-    {
-        name: 'wizard',
-        component: () => <Main/>
     }
 ]

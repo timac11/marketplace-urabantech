@@ -3,6 +3,7 @@ import './header.css';
 import Box from "@material-ui/core/Box/Box";
 import User from "../../resources/img/user.jpg"
 import {makeStyles} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,7 +31,7 @@ const Header = () => {
     return (
         <div className="header">
             <Box fontSize="h6.fontSize">
-                <div className="prod-name">Startblock</div>
+                <NavLink to="/main" style={{textDecoration: "none"}}><div className="prod-name">Startblock</div></NavLink>
             </Box>
             <div className="user-info">
                 <div className="user-name">Антон Печеркин</div>
