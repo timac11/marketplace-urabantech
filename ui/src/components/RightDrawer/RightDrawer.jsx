@@ -18,6 +18,8 @@ const useStyles = makeStyles(theme => ({
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
+        position: 'fixed',
+        right: 0
     },
     checkBoxLabel: {
         fontSize: '12px'

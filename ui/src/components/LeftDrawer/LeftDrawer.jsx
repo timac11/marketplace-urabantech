@@ -15,6 +15,8 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         paddingTop: '16px',
+        position: 'fixed',
+        left: 0
     }
 }))
 

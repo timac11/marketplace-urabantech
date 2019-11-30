@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box} from "@material-ui/core";
+import {Box, makeStyles} from "@material-ui/core";
 import PropTypes from 'prop-types';
 import LeftDrawer from "../../components/LeftDrawer/LeftDrawer";
 import RightDrawer from "../../components/RightDrawer/RightDrawer";
@@ -9,6 +9,17 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {Search} from "@material-ui/icons";
+
+const useStyles = makeStyles(theme => ({
+    content: {
+        width: '60vw',
+        height: '100vh',
+        overflowY: 'scroll',
+        position: 'fixed',
+        left: '20vw',
+        borderTop: '1px solid rgba(0,0,0,0.5)'
+    }
+}))
 
 const stubData = [
     {
@@ -42,10 +53,12 @@ const stubData = [
 ]
 
 const MainPage = ({id}) => {
+    const classes = useStyles()
+
     return (
         <Box display={'flex'} >
             <LeftDrawer id={id}/>
-            <Box width={'60vw'}>
+            <Box width={'60vw'} className={classes.content}>
                 <Box m={1}>
                     <FormControl fullWidth={true}>
                         <InputLabel htmlFor="input-with-icon-adornment">Поиск продуктов:</InputLabel>
