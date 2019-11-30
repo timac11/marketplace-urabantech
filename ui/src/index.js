@@ -29,6 +29,9 @@ ReactDOM.render(
                 <Link to={'/product/5'} >
                     Consumer 1
                 </Link>
+                <Link to={'/login'} >
+                    LOGIN
+                </Link>
             </TreeRootRouter>
         </Router>
     </ThemeProvider>,
