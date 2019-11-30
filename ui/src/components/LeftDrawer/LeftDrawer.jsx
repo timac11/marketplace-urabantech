@@ -9,7 +9,11 @@ LeftDrawer.propTypes = {
 
 const useStyles = makeStyles(theme => ({
     drawer: {
-        width: '20vw'
+        width: '20vw',
+        border: '1px solid rgba(0,0,0,0.5)',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
     }
 }))
 
@@ -31,7 +35,7 @@ function LeftDrawer({id}) {
                 </Typography>
                 <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} mt={1} >
                     {
-                        ['Blockchain', 'AI', 'ML'].map((value, index) => (<Box mr={1}><Chip key={index} label={value} /></Box>))
+                        ['Blockchain', 'AI', 'ML'].map((value, index) => (<Box key={index} mr={1}><Chip label={value} /></Box>))
                     }
                 </Box>
             </Box>

@@ -1,8 +1,10 @@
-import React from 'react';
-import {Box, Checkbox, Divider, FormControlLabel, makeStyles, Typography, FormGroup, Slider} from "@material-ui/core";
+import React, {useState} from 'react';
+import {Box, Checkbox, Divider, FormControlLabel, FormGroup, makeStyles, Typography} from "@material-ui/core";
 import PropTypes from "prop-types";
 import PricePicker from "../PricePicker/PricePicker";
-
+import IntervalPicker from "../IntervalPicker/IntervalPicker";
+import "./react-datepicker.css";
+import Button from "@material-ui/core/Button";
 
 RightDrawer.propTypes = {
     id: PropTypes.number.isRequired
@@ -11,44 +13,65 @@ RightDrawer.propTypes = {
 
 const useStyles = makeStyles(theme => ({
     drawer: {
-        width: '20vw'
+        width: '20vw',
+        border: '1px solid rgba(0,0,0,0.5)',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    checkBoxLabel: {
+        fontSize: '12px'
     }
 }))
 
 function RightDrawer({id}) {
+    const [startDate, setStartDate] = useState(new Date());
     const classes = useStyles()
 
     return (
-        <Box className={classes.drawer}>
+        <Box className={classes.drawer} p={2}>
             <Box>
-                <Typography>
-                    Фильтры:
+                <Typography variant={"h5"}>
+                    <b>Фильтры:</b>
                 </Typography>
                 <Typography>
                     Тип продукта:
                 </Typography>
-                <FormGroup>
-                    <FormControlLabel
-                        control={<Checkbox />}
-                        label="Библиотека"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox />}
-                        label="Коммерческое решение"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox />
-                        }
-                        label="Код"
-                    />
-                </FormGroup>
+                <Box ml={1}>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox checked={true}/>}
+                            label="Библиотека"
+                            classes={{
+                                label: classes.checkBoxLabel
+                            }}
+                        />
+                        <FormControlLabel
+                            control={<Checkbox checked={true}/>}
+                            label="Коммерческое решение"
+                            classes={{
+                                label: classes.checkBoxLabel
+                            }}
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={true}/>
+                            }
+                            label="Код"
+                            classes={{
+                                label: classes.checkBoxLabel
+                            }}
+                        />
+                    </FormGroup>
+                </Box>
             </Box>
+            <br />
             <Box>
                 <Typography>
                     Средняя оценка:
                 </Typography>
             </Box>
+            <br />
             <Box>
                 <Typography>
                     Стоимость:
@@ -59,15 +82,7 @@ function RightDrawer({id}) {
                 <Typography>
                     Кол-во скачиваний:
                 </Typography>
-                19
-            </Box>
-            <Box>
-                <Typography>
-                    Дата публикации:
-                </Typography>
-                <Typography>
-                    11.11.2019
-                </Typography>
+                <IntervalPicker/>
             </Box>
             <Box>
                 <Typography>
@@ -83,6 +98,12 @@ function RightDrawer({id}) {
                 </Typography>
             </Box>
             <Divider/>
+            <br />
+            <Box alignSelf={'center'}>
+                <Button variant={"contained"} color={"primary"}>
+                    Применить
+                </Button>
+            </Box>
         </Box>
     );
 }

@@ -1,25 +1,24 @@
 import React from 'react';
-import numeral from "numeral";
 import Slider from "@material-ui/core/Slider";
 import {makeStyles} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 
 const marks = [
     {
-        value: 1000,
-        label: '1000 ₽',
+        value: 0,
+        label: '0',
     },
     {
-        value: 300000,
-        label: '300000 ₽',
+        value: 10,
+        label: '10',
     },
     {
-        value: 500000,
-        label: '500000 ₽',
+        value: 50,
+        label: '50',
     },
     {
-        value: 900000,
-        label: '900000 ₽',
+        value: 100,
+        label: '100',
     },
 ];
 
@@ -30,13 +29,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function valuetext(value) {
-    return numeral(value).format('(0.0 a)');
+    return value
 }
 
-function PricePicker(props) {
+function IntervalPicker(props) {
     const classes = useStyles()
 
-    const [value, setValue] = React.useState([100, 300000]);
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -51,8 +50,8 @@ function PricePicker(props) {
                 aria-labelledby="range-slider"
                 getAriaValueText={valuetext}
                 valueLabelFormat={valuetext}
-                max={1000000}
-                min={100}
+                max={100}
+                min={0}
                 marks={marks}
                 classes={{
                     valueLabel: classes.valueLabel,
@@ -63,4 +62,4 @@ function PricePicker(props) {
     );
 }
 
-export default PricePicker;
+export default IntervalPicker;
