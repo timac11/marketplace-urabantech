@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
+        paddingTop: '16px',
     }
 }))
 
