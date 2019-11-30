@@ -74,13 +74,13 @@ export function Details() {
     return (
         <div className={classes.root}>
             <Box paddingLeft="16px" marginBottom="16px">
-                <Typography variant="h5" paragraph={true}>Base parameters</Typography>
+                <Typography variant="h5" paragraph={true}>Приложение 1</Typography>
                 <Box>
-                    <Typography display="inline">Description: </Typography>
-                    <Typography display="inline">My application tra ta ta</Typography>
+                    <Typography display="inline">Описание: </Typography>
+                    <Typography display="inline">Моя разработка тра-тата</Typography>
                 </Box>
                 <Box display="flex">
-                    <Typography display="inline">Mark:</Typography>
+                    <Typography display="inline">Оценка:</Typography>
                     <Rating name="read-only" value={4} readOnly/>
                 </Box>
             </Box>
@@ -95,8 +95,8 @@ export function Details() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="Technical Parameters" {...a11yProps(0)}/>
-                    <Tab label="Products parameters" {...a11yProps(1)}/>
+                    <Tab label="Технические параметры" {...a11yProps(0)}/>
+                    <Tab label="Продуктовые характеристики" {...a11yProps(1)}/>
                 </Tabs>
             </AppBar>
             <TabPanel value={activeTab} index={0} dir={theme.direction}>
@@ -132,7 +132,7 @@ function buildPieChartConfig(name, percentage) {
             }
         },
         title: {
-            text: `${name}: ${percentage}`,
+            text: `${name}: ${percentage}%`,
             align: 'center',
             verticalAlign: 'middle',
             y: 10
@@ -166,12 +166,15 @@ function buildActivityGraph() {
             zoomType: 'x',
             height: 200
         },
+        title: {
+            text: "График изменений"
+        },
         xAxis: {
             type: 'datetime'
         },
         yAxis: {
             title: {
-                text: 'Exchange rate'
+                text: 'Изменения'
             }
         },
         legend: {
@@ -206,7 +209,7 @@ function buildActivityGraph() {
 
         series: [{
             type: 'area',
-            name: 'User activity',
+            name: 'Активность',
             data: [[
                 1167609600000,
                 0.7537
