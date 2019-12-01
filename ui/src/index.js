@@ -11,8 +11,8 @@ import Header from "./components/header/header";
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Header/>
         <Router>
+            <Header/>
             <TreeRootRouter>
             </TreeRootRouter>
         </Router>
