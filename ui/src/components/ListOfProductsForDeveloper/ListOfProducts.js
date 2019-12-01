@@ -9,41 +9,9 @@ import {NavLink} from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import FullScreenDialog from "../dialog/Dialog";
 import Button from "@material-ui/core/Button/Button";
+import {products} from "../../pages/integrator-workshop/example";
 
-const stubData = [
-    {
-        averageRate: 4,
-        id: 1,
-        cost: 100000,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        type: 'библиотека'
-    },
-    {
-        averageRate: 4,
-        id: 2,
-        cost: 100000,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        type: 'библиотека'
-    },
-    {
-        averageRate: 4,
-        id: 3,
-        cost: 100000,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        type: 'библиотека'
-    },
-    {
-        averageRate: 4,
-        id: 4,
-        cost: 100000,
-        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        type: 'библиотека'
-    }
-]
+const stubData = products
 
 const useStyles = makeStyles(theme => ({
     content: {

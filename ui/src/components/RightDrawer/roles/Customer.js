@@ -3,6 +3,8 @@ import {Box, Checkbox, Divider, FormControlLabel, FormGroup, makeStyles, Typogra
 import PricePicker from "../../PricePicker/PricePicker";
 import IntervalPicker from "../../IntervalPicker/IntervalPicker";
 import Button from "@material-ui/core/Button";
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 
 const useStyles = makeStyles(theme => ({
     checkBoxLabel: {
@@ -54,8 +56,9 @@ function Customer(props) {
             <br />
             <Box>
                 <Typography>
-                    Средняя оценка:
+                    Минимальная средняя оценка:
                 </Typography>
+                <Rater />
             </Box>
             <br />
             <Box>
