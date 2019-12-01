@@ -8,14 +8,20 @@ import {TreeRootRouter} from "./routes/TreeRouter/TreeRootRouter";
 import Header from "./components/header/header";
 
 
+function App() {
+    return <Router>
+        <Header/>
+        <TreeRootRouter>
+        </TreeRootRouter>
+    </Router>
+}
+
+
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Router>
-            <Header/>
-            <TreeRootRouter>
-            </TreeRootRouter>
-        </Router>
+        <App />
     </ThemeProvider>,
     document.getElementById('app')
 );
+

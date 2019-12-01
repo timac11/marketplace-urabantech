@@ -1,5 +1,5 @@
-import React from 'react';
-import {makeStyles, useTheme} from "@material-ui/core";
+import React, {useState} from 'react';
+import {DialogContent, makeStyles, useTheme} from "@material-ui/core";
 import ChartProvider from "../components/chart/ChartProvider";
 import Typography from "@material-ui/core/Typography/Typography";
 import Rating from '@material-ui/lab/Rating';
@@ -9,8 +9,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Container from "@material-ui/core/Container/Container";
 import {activityData} from "../stabs/stabFile";
-import UploadButton from "../components/uploadButton/uploadButton";
 import Button from "@material-ui/core/Button";
+import ReactTerminal from 'react-terminal-component';
+import Dialog from "@material-ui/core/Dialog";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,6 +29,10 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
     },
+    terminal: {
+        width: '100vw',
+        padding: 'none'
+    }
 }));
 
 function TabPanel(props) {
@@ -69,13 +75,56 @@ function TabPanel(props) {
     );
 }
 
+const mapButtonstateToButton = (state, onClick) => {
+    switch (state) {
+        case 0: {
+            return <Button variant={"contained"} color={"secondary"} fullWidth={true}
+                    onClick={onClick}>
+                Купить
+            </Button>
+        }
+        case 1: {
+            return <Button variant={"contained"} color={"secondary"} disabled={true} fullWidth={true}
+                    >
+                Идет&nbsp;покупка
+            </Button>
+        }
+        case 2: {
+            return <Button variant={"contained"} color={"default"} fullWidth={true}
+                           onClick={onClick}>
+                Подключиться&nbsp;по&nbsp;SSH
+            </Button>
+        }
+    }
+}
+
 export function Details() {
     const classes = useStyles();
     const [activeTab, setActiveTab] = React.useState(0);
     const theme = useTheme();
+    const [buyState, setBuyState] = useState(0)
+    const handleBuy = () => {
+        setBuyState(1);
+        setTimeout(() => {
+            setBuyState(2)
+        }, 2000)
+    }
+    const [showTerminal, setShowTerminal] = useState(false)
+
 
     return (
         <div className={classes.root}>
+            <Dialog
+                open={showTerminal}
+                onClose={() => setShowTerminal(false)}
+                aria-labelledby="draggable-dialog-title"
+            >
+                <Box
+                    className={classes.terminal}
+                >
+                    <ReactTerminal/>
+                </Box>
+            </Dialog>
             <Box paddingLeft="16px" m={2} display={'flex'} justifyContent={'space-evenly'} >
                 <Box mb={2}>
                     <Typography variant="h5" paragraph={true}>Библиотека обработки зашумленного звука</Typography>
@@ -88,14 +137,16 @@ export function Details() {
                         <Rating name="read-only" value={4} readOnly/>
                     </Box>
                 </Box>
-                <Box display={'flex'} flexDirection={'column'} alignItems={'center'} >
-                    <Typography variant={"h4"}>
-                        100000 ₽
-                    </Typography>
+                <Box display={'flex'} flexDirection={'column'} alignItems={'center'} flexGrow={2} alignSelf={'flex-start'}>
+                    {buyState === 0 || buyState === 1 ? <Typography variant={"h4"}>
+                        100000&nbsp;₽
+                    </Typography> : <Typography variant={"h5"} align={"center"}>
+                        Продукт куплен
+                    </Typography>}
                     <Box mt={1}>
-                        <Button variant={"contained"} color={"secondary"} fullWidth={true}>
-                            Купить
-                        </Button>
+                        {
+                            mapButtonstateToButton(buyState, buyState === 0 ? handleBuy : () => setShowTerminal(true))
+                        }
                     </Box>
                 </Box>
             </Box>

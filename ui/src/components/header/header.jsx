@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Header = () => {
-
     function logout() {
         localStorage.clear();
         window.location = '/login';
