@@ -1,11 +1,9 @@
 import React from 'react';
-import {Example} from "./example";
+import {QuoteApp} from "./example";
 
-const IntegratorWorkshop = () => {
+function IntegratorWorkshop() {
 
-    return <Example />
-};
-
-IntegratorWorkshop.propTypes = {};
+    return <QuoteApp />
+}
 
 export default IntegratorWorkshop;

@@ -1,99 +1,97 @@
-import React from 'react'
-import '@atlaskit/css-reset'
-import { DragDropContext } from 'react-beautiful-dnd'
-import styled from 'styled-components'
+import React, {useState} from "react";
+import styled from "styled-components";
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import Box from "@material-ui/core/Box";
 
-import initialData from './initial-data'
-import Column from './column'
+const initial = Array.from({length: 10}, (v, k) => k).map(k => {
+    return {
+        id: `id-${k}`,
+        content: `Quote ${k}`
+    };
+});
 
-const Container = styled.div`
-  display:flex;
-`
+const grid = 8;
+const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
 
-export class Example extends React.Component {
-    state = initialData
+    return result;
+};
 
-    onDragEnd = result => {
-        const { destination, source, draggableId } = result
+const QuoteItem = styled.div`
+  width: 200px;
+  border: 1px solid grey;
+  margin-bottom: ${grid}px;
+  background-color: lightblue;
+  padding: ${grid}px;
+`;
 
-        if (!destination) {
-            return
+function Quote({quote, index}) {
+    return (
+        <Draggable draggableId={quote.id} index={index}>
+            {provided => (
+                <QuoteItem
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                >
+                    {quote.content}
+                </QuoteItem>
+            )}
+        </Draggable>
+    );
+}
+
+const QuoteList = React.memo(function QuoteList({quotes}) {
+    return quotes.map((quote, index) => (
+        <Quote quote={quote} index={index} key={quote.id}/>
+    ));
+});
+
+export function QuoteApp() {
+    const [state, setState] = useState({quotes: initial});
+
+    function onDragEnd(result) {
+        if (!result.destination) {
+            return;
         }
 
-        if (
-            destination.droppableId === source.droppableId &&
-            destination.index === source.index
-        ) {
-            return
+        if (result.destination.index === result.source.index) {
+            return;
         }
 
-        const start = this.state.columns[source.droppableId]
-        const finish = this.state.columns[destination.droppableId]
+        const quotes = reorder(
+            state.quotes,
+            result.source.index,
+            result.destination.index
+        );
 
-        if (start === finish) {
-            const newTaskIds = Array.from(start.taskIds)
-            newTaskIds.splice(source.index, 1)
-            newTaskIds.splice(destination.index, 0, draggableId)
-
-            const newColumn = {
-                ...start,
-                taskIds: newTaskIds
-            }
-
-            const newState = {
-                ...this.state,
-                columns: {
-                    ...this.state.columns,
-                    [newColumn.id]: newColumn
-                }
-            }
-
-            this.setState(newState)
-            return
-        }
-
-        // Moving from one list to another
-        const startTaskIds = Array.from(start.taskIds)
-        startTaskIds.splice(source.index, 1)
-        const newStart = {
-            ...start,
-            taskIds: startTaskIds
-        }
-
-        const finishTaskIds = Array.from(finish.taskIds)
-        finishTaskIds.splice(destination.index, 0, draggableId)
-        const newFinish = {
-            ...finish,
-            taskIds: finishTaskIds
-        }
-
-        const newState = {
-            ...this.state,
-            columns: {
-                ...this.state.columns,
-                [newStart.id]: newStart,
-                [newFinish.id]: newFinish
-            }
-        }
-        this.setState(newState)
+        setState({quotes});
     }
 
-    render() {
-        return (
-            <DragDropContext onDragEnd={this.onDragEnd}>
-                <Container>
-                    {this.state.columnOrder.map(columnId => {
-                        const column = this.state.columns[columnId]
-                        const tasks = column.taskIds.map(
-                            taskId => this.state.tasks[taskId]
-                        )
-
-                        return (
-                            <Column key={column.id} column={column} tasks={tasks} />
-                        )
-                    })}
-                </Container>
+    return (
+        <Box display={'flex'}>
+            <DragDropContext onDragEnd={onDragEnd} >
+                <Droppable droppableId="list1">
+                    {provided => (
+                        <div ref={provided.innerRef} {...provided.droppableProps}>
+                            <QuoteList quotes={state.quotes}/>
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
             </DragDropContext>
-        )
-    }
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="list1">
+                    {provided => (
+                        <div ref={provided.innerRef} {...provided.droppableProps}>
+                            <QuoteList quotes={state.quotes}/>
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        </Box>
+    );
 }
