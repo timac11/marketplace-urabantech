@@ -9,6 +9,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Container from "@material-ui/core/Container/Container";
 import {activityData} from "../stabs/stabFile";
+import UploadButton from "../components/uploadButton/uploadButton";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -74,15 +76,27 @@ export function Details() {
 
     return (
         <div className={classes.root}>
-            <Box paddingLeft="16px" marginBottom="16px">
-                <Typography variant="h5" paragraph={true}>Приложение 1</Typography>
-                <Box>
-                    <Typography display="inline">Описание: </Typography>
-                    <Typography display="inline">Моя разработка тра-тата</Typography>
+            <Box paddingLeft="16px" m={2} display={'flex'} justifyContent={'space-evenly'} >
+                <Box mb={2}>
+                    <Typography variant="h5" paragraph={true}>Библиотека обработки зашумленного звука</Typography>
+                    <Box>
+                        <Typography display="inline">Описание: </Typography>
+                        <Typography display="inline">Данный продукт представляет собой библиотеку для обработки звуковых файлов и дальнейшей фильтрации от шумов.</Typography>
+                    </Box>
+                    <Box display="flex">
+                        <Typography display="inline">Оценка:</Typography>
+                        <Rating name="read-only" value={4} readOnly/>
+                    </Box>
                 </Box>
-                <Box display="flex">
-                    <Typography display="inline">Оценка:</Typography>
-                    <Rating name="read-only" value={4} readOnly/>
+                <Box display={'flex'} flexDirection={'column'} alignItems={'center'} >
+                    <Typography variant={"h4"}>
+                        100000 ₽
+                    </Typography>
+                    <Box mt={1}>
+                        <Button variant={"contained"} color={"secondary"} fullWidth={true}>
+                            Купить
+                        </Button>
+                    </Box>
                 </Box>
             </Box>
             <AppBar position="static" color="default">
