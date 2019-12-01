@@ -7,6 +7,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import {Search} from "@material-ui/icons";
 import {NavLink} from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
+import FullScreenDialog from "../dialog/Dialog";
+import Button from "@material-ui/core/Button/Button";
 
 const stubData = [
     {
@@ -43,11 +45,31 @@ const stubData = [
     }
 ]
 
+const useStyles = makeStyles(theme => ({
+    content: {
+        width: '60vw',
+        height: '100vh',
+        overflowY: 'scroll',
+        position: 'fixed',
+        left: '20vw',
+        borderTop: '1px solid rgba(0,0,0,0.5)'
+    },
+    toolbar: {
+        display: "flex"
+    },
+    createImageButton: {
+        height: "34px",
+        marginLeft: "12px",
+        marginTop: "14px"
+    }
+}))
 
 const ListOfProductsForDeveloper = () => {
+    const classes = useStyles();
+    const [openDialog, setOpenDialog] = React.useState(false);
     return (
         <>
-            <Box m={1}>
+            <Box display="flex" m={1}>
                 <FormControl fullWidth={true}>
                     <InputLabel htmlFor="input-with-icon-adornment">Поиск продуктов:</InputLabel>
                     <Input
@@ -59,6 +81,12 @@ const ListOfProductsForDeveloper = () => {
                         }
                     />
                 </FormControl>
+                <Button className={classes.createImageButton}
+                        variant={"contained"}
+                        color={"secondary"}
+                        onClick={() => setOpenDialog(true)}>
+                    Создать
+                </Button>
             </Box>
             {
                 stubData.map((value, index) => (
@@ -68,6 +96,7 @@ const ListOfProductsForDeveloper = () => {
                         />
                     </NavLink>))
             }
+            <FullScreenDialog open={openDialog} handleClose={() => setOpenDialog(false)}/>
         </>
     )
 };

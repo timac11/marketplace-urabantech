@@ -98,8 +98,6 @@ const MainPage = ({id}) => {
             })
         }
     }
-    const classes = useStyles()
-    const [openDialog, setOpenDialog] = React.useState(false);
 
     return (
         <Box display={'flex'} >
