@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
 import Box from "@material-ui/core/Box";
-import {createMuiTheme, MuiThemeProvider, Typography} from "@material-ui/core";
+import {createMuiTheme, makeStyles, MuiThemeProvider, Typography} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
-import {ThemeProvider} from '@material-ui/styles';
 import './styles.css';
+import Button from "@material-ui/core/Button/Button";
+import FormControl from "@material-ui/core/FormControl/FormControl";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Input from "@material-ui/core/Input/Input";
+import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
+import {Search} from "@material-ui/icons";
 
 const theme = createMuiTheme({
     overrides: {
@@ -202,7 +207,7 @@ const getItems = (count, offset = 0) => {
                         {products[k].description}
                     </Typography>
                 </Box>
-                <Box display={'flex'} flexDirection={'column'} justifyContent={'space-evenly'} >
+                <Box display={'flex'} flexDirection={'column'} justifyContent={'space-evenly'}>
                     <Box>
                         <Typography>
                             <b>Тарификация:</b>
@@ -270,6 +275,7 @@ const getListStyle = isDraggingOver => ({
 });
 
 export class Example extends Component {
+
     state = {
         items: getItems(10),
         selected: getItems(0, 1)
@@ -332,79 +338,102 @@ export class Example extends Component {
     // But in this example everything is just done in one place for simplicity
     render() {
         return (
+            <>
+                <Box display="flex" m={1}>
+                    <FormControl fullWidth={true}>
+                        <InputLabel htmlFor="input-with-icon-adornment">Поиск продуктов:</InputLabel>
+                        <Input style={{marginTop: "8px"}}
+                                id="input-with-icon-adornment"
+                               startAdornment={
+                                <InputAdornment position="start">
+                                    <Search/>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+                    <Box ml={1}>
+                        <Button styles={{marginLeft: "8px"}}
+                                variant={"contained"}
+                                color={"secondary"}
+                                onClick={() => window.open('http://localhost:5000')}>
+                            Подобрать
+                        </Button>
+                    </Box>
+                </Box>
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Box p={1}>
-                    <Box display={'flex'} justifyContent={'space-evenly'}>
-                        <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
-                            <Typography variant={"h5"}>
-                                Все продукты
-                            </Typography>
-                            <Droppable droppableId="droppable">
-                                {(provided, snapshot) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        style={getListStyle(snapshot.isDraggingOver)}>
-                                        {this.state.items.map((item, index) => (
-                                            <Draggable
-                                                key={item.id}
-                                                draggableId={item.id}
-                                                index={index}>
-                                                {(provided, snapshot) => (
-                                                    <div
-                                                        ref={provided.innerRef}
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        style={getItemStyle(
-                                                            snapshot.isDragging,
-                                                            provided.draggableProps.style
-                                                        )}
-                                                    >
-                                                        {item.content}
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                        </Box>
-                        <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
-                            <Typography variant={"h5"}>
-                                Собираемый набор
-                            </Typography>
-                            <Droppable droppableId="droppable2">
-                                {(provided, snapshot) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        style={getListStyle(snapshot.isDraggingOver)}>
-                                        {this.state.selected.map((item, index) => (
-                                            <Draggable
-                                                key={item.id}
-                                                draggableId={item.id}
-                                                index={index}>
-                                                {(provided, snapshot) => (
-                                                    <div
-                                                        ref={provided.innerRef}
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        style={getItemStyle(
-                                                            snapshot.isDragging,
-                                                            provided.draggableProps.style
-                                                        )}>
-                                                        {item.content}
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
+                        <Box display={'flex'} justifyContent={'space-evenly'}>
+                            <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+                                <Typography variant={"h5"}>
+                                    Все продукты
+                                </Typography>
+                                <Droppable droppableId="droppable">
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            style={getListStyle(snapshot.isDraggingOver)}>
+                                            {this.state.items.map((item, index) => (
+                                                <Draggable
+                                                    key={item.id}
+                                                    draggableId={item.id}
+                                                    index={index}>
+                                                    {(provided, snapshot) => (
+                                                        <div
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                            {...provided.dragHandleProps}
+                                                            style={getItemStyle(
+                                                                snapshot.isDragging,
+                                                                provided.draggableProps.style
+                                                            )}
+                                                        >
+                                                            {item.content}
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </Box>
+                            <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+                                <Typography variant={"h5"}>
+                                    Собираемый набор
+                                </Typography>
+                                <Droppable droppableId="droppable2">
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            style={getListStyle(snapshot.isDraggingOver)}>
+                                            {this.state.selected.map((item, index) => (
+                                                <Draggable
+                                                    key={item.id}
+                                                    draggableId={item.id}
+                                                    index={index}>
+                                                    {(provided, snapshot) => (
+                                                        <div
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                            {...provided.dragHandleProps}
+                                                            style={getItemStyle(
+                                                                snapshot.isDragging,
+                                                                provided.draggableProps.style
+                                                            )}>
+                                                            {item.content}
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </Box>
                         </Box>
                     </Box>
-                    </Box>
-            </DragDropContext>
+                </DragDropContext>
+            </>
         );
     }
 }

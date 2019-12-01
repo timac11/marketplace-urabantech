@@ -8,6 +8,7 @@ import {Search} from "@material-ui/icons";
 import {NavLink} from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import {products} from "../../pages/integrator-workshop/example";
+import Button from "@material-ui/core/Button/Button";
 
 // const stubData = [
 //     {
@@ -49,18 +50,26 @@ const stubData = products
 const ListOfProducts = () => {
     return (
         <>
-            <Box m={1}>
+            <Box display="flex" m={1}>
                 <FormControl fullWidth={true}>
                     <InputLabel htmlFor="input-with-icon-adornment">Поиск продуктов:</InputLabel>
-                    <Input
-                        id="input-with-icon-adornment"
-                        startAdornment={
-                            <InputAdornment position="start">
-                                <Search/>
-                            </InputAdornment>
-                        }
+                    <Input style={{marginTop: "8px"}}
+                           id="input-with-icon-adornment"
+                           startAdornment={
+                               <InputAdornment position="start">
+                                   <Search/>
+                               </InputAdornment>
+                           }
                     />
                 </FormControl>
+                <Box ml={1}>
+                    <Button styles={{marginLeft: "8px"}}
+                            variant={"contained"}
+                            color={"secondary"}
+                            onClick={() => window.open('http://localhost:5000')}>
+                        Подобрать
+                    </Button>
+                </Box>
             </Box>
             {
                 stubData.map((value, index) => (
