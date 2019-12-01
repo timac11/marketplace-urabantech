@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
 import {firstLevelRouterWithoutId, firstLevelRoutes} from "./RoutesAndComponents";
+import Box from "@material-ui/core/Box";
 
 const getParamsId = () => {
   const params = useParams();
@@ -9,7 +10,7 @@ const getParamsId = () => {
 
 export const TreeRootRouter = ({children}) => {
 
-  return <>
+  return <Box>
     <Switch>
       {
         firstLevelRoutes.map((route, index) => <Route key={index} path={`/${route.name}/:id`}
@@ -21,5 +22,5 @@ export const TreeRootRouter = ({children}) => {
       }
     </Switch>
     {children}
-  </>;
+  </Box>;
 };

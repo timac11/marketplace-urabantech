@@ -19,7 +19,7 @@ const MainContent = () => {
     return (
         <Box className={classes.content}>
             {/*<ListOfProducts/>*/}
-            <IntegratorWorkshop/>
+            {/*<IntegratorWorkshop/>*/}
         </Box>
     )
 };
