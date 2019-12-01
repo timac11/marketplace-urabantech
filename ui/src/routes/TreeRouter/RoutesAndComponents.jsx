@@ -8,7 +8,7 @@ import MainPage from "../../pages/main-page/MainPage";
 export const firstLevelRoutes = [
     {
         name: 'product',
-        component: ({id}) => <Details/>
+        component: ({id}) => <Details id={id}/>
     }
 ]
 

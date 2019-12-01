@@ -8,7 +8,7 @@ import numberSeparator from "../../../utils/numberSeparator";
 function Integrator({content}) {
     console.log(content);
     return (
-        <Box display={'flex'} flexDirection={'column'} position={'relative'} >
+        <Box display={'flex'} flexDirection={'column'} position={'relative'}>
             {
                 content.sum && <>
                     <Typography>
@@ -29,12 +29,36 @@ function Integrator({content}) {
                     <br />
                     <Divider />
                     <Typography>
+                        Итоговая стоимость лицензий:
+                    </Typography>
+                    <Typography variant={"h6"}>
+                        <b>{numberSeparator(content.sum)}&nbsp;₽</b>
+                    </Typography>
+                    <Typography>
+                        Расчетный ежемесячный платеж:
+                    </Typography>
+                    <Typography variant={"h6"}>
+                        <b>{numberSeparator(content.sum2)}&nbsp;₽/мес.</b>
+                    </Typography>
+                    <Typography>
                         Итоговая стоимость набора:
                     </Typography>
                     <Typography variant={"h6"}>
                         <b>{numberSeparator(content.sum)}&nbsp;₽</b>
                     </Typography>
+                    <Typography variant={"h6"}>
+                        <b>+{numberSeparator(content.sum2)}&nbsp;₽/мес</b>
+                    </Typography>
                     <Divider />
+                    <Typography>
+                        Ваш заработок с продажи одного пакета:
+                    </Typography>
+                    <Typography variant={"h6"}>
+                        <b>{numberSeparator((content.sum*0.07).toFixed(2))}&nbsp;₽</b>
+                    </Typography>
+                    <Typography variant={"h6"}>
+                        <b>+{numberSeparator((content.sum2*0.07).toFixed(2))}&nbsp;₽/мес</b>
+                    </Typography>
                     <br />
                     <Box justifySelf={'flex-end'} alignSelf={'center'} >
                         <Button color={"primary"} variant={"contained"}>

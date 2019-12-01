@@ -11,6 +11,7 @@ import Container from "@material-ui/core/Container/Container";
 import {activityData} from "../stabs/stabFile";
 import Button from "@material-ui/core/Button";
 import ReactTerminal from 'react-terminal-component';
+import {products} from "../pages/integrator-workshop/example";
 
 
 const useStyles = makeStyles(theme => ({
@@ -128,7 +129,7 @@ const mapButtonstateToButton = (state, onClick) => {
     }
 }
 
-export function Details() {
+export function Details({id}) {
     const classes = useStyles();
     const [activeTab, setActiveTab] = React.useState(0);
     const theme = useTheme();
@@ -146,22 +147,22 @@ export function Details() {
         <div className={classes.root}>
             <Box paddingLeft="16px" m={2} display={'flex'} justifyContent={'space-evenly'} >
                 <Box mb={2}>
-                    <Typography variant="h5" paragraph={true}>Библиотека обработки зашумленного звука</Typography>
+                    <Typography variant="h5" paragraph={true}>{products[id].name}</Typography>
                     <Box>
                         <Typography display="inline">Описание: </Typography>
-                        <Typography display="inline">Данный продукт представляет собой библиотеку для обработки звуковых файлов и дальнейшей фильтрации от шумов.</Typography>
+                        <Typography display="inline">{products[id].description}</Typography>
                     </Box>
                     <Box display="flex">
                         <Typography display="inline">Оценка:</Typography>
-                        <Rating name="read-only" value={4} readOnly/>
+                        <Rating name="read-only" value={products[id].averageRate} readOnly/>
                     </Box>
                 </Box>
                 <Box display={'flex'} flexDirection={'column'} alignItems={'center'} flexGrow={2} alignSelf={'flex-start'}>
                     {buyState === 0 || buyState === 1 ? <Typography variant={"h4"}>
-                        100000&nbsp;₽
-                    </Typography> : <Typography variant={"h5"} align={"center"}>
+                        {products[id].price}&nbsp;₽
+                    </Typography> : <Box><Typography variant={"h6"} align={"center"}>
                         Продукт куплен
-                    </Typography>}
+                    </Typography> <br /> <Button variant={"outlined"} color={"primary"}>Связаться с поддержкой</Button> </Box>}
                     <Box mt={1}>
                         {
                             mapButtonstateToButton(buyState, buyState === 0 ? handleBuy : () => setShowTerminal(true))
@@ -325,6 +326,7 @@ function buildPriceGraph() {
         },
         title: {
             text: "График изменения цены"
+            text: "Кол-во скачиваний продукта"
         },
         xAxis: {
             type: 'datetime'
