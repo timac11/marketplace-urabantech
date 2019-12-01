@@ -326,7 +326,6 @@ function buildPriceGraph() {
         },
         title: {
             text: "График изменения цены"
-            text: "Кол-во скачиваний продукта"
         },
         xAxis: {
             type: 'datetime'
