@@ -7,6 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "node ./node_modules/eslint/bin/eslint.js ./src/lib/react/**/*.jsx",
 		"serve": "webpack-dev-server --no-cache --config ./webpack.config.js --mode development",
+		"prod": "webpack-dev-server --no-cache --config ./webpack.config.js --mode production",
 		"build": "webpack --config ./webpack.config.js --mode development",
 		"watch": "webpack  --watch --config ./webpack.config.js --mode development",
 		"stub-server": "node ./stub-server/stub-server.js"
@@ -78,6 +79,7 @@
 		"redux": "^4.0.1",
 		"redux-thunk": "^2.3.0",
 		"styled-components": "^4.4.1",
+		"webpack-bundle-analyzer": "^3.6.0",
 		"worker-loader": "^2.0.0"
 	}
 }
