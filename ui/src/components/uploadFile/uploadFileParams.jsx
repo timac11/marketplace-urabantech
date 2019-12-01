@@ -30,26 +30,6 @@ export default function UploadFileParams() {
                         autoComplete="billing address-line1"
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="price"
-                        name="price"
-                        label="Стоимость"
-                        fullWidth
-                        autoComplete="billing address-level2"
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="tarif"
-                        name="tarif"
-                        label="Тариф"
-                        fullWidth
-                        autoComplete="billing postal-code"
-                    />
-                </Grid>
                 <Grid item xs={12}>
                     <TextField
                         id="dop"

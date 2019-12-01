@@ -60,35 +60,24 @@ const useStyles = makeStyles(theme => ({
 
 const tiers = [
     {
-        title: 'Free',
-        price: '0',
-        description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-        buttonText: 'Sign up for free',
+        title: 'Свободная',
+        price: '100000',
+        description: ['2 Гб дискового пространства', '2 ядра', '3,2 Гб ОЗУ'],
+        buttonText: 'Применить',
         buttonVariant: 'outlined',
     },
     {
-        title: 'Pro',
-        subheader: 'Most popular',
-        price: '15',
-        description: [
-            '20 users included',
-            '10 GB of storage',
-            'Help center access',
-            'Priority email support',
-        ],
-        buttonText: 'Get started',
+        title: 'Профессиональная',
+        price: '200000',
+        description: ['4 Гб дискового пространства', '3 ядра', '4,2 Гб ОЗУ'],
+        buttonText: 'Применить',
         buttonVariant: 'contained',
     },
     {
-        title: 'Enterprise',
-        price: '30',
-        description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Phone & email support',
-        ],
-        buttonText: 'Contact us',
+        title: 'Энтерпрайз',
+        price: '300000',
+        description: ['8 Гб дискового пространства', '4 ядра', '5 Гб ОЗУ'],
+        buttonText: 'Применить',
         buttonVariant: 'outlined',
     },
 ];
@@ -116,10 +105,10 @@ export default function Params() {
                                 <CardContent>
                                     <div className={classes.cardPricing}>
                                         <Typography component="h2" variant="h3" color="textPrimary">
-                                            ${tier.price}
+                                            {tier.price}
                                         </Typography>
                                         <Typography variant="h6" color="textSecondary">
-                                            /mo
+                                            /месяц
                                         </Typography>
                                     </div>
                                     <ul>

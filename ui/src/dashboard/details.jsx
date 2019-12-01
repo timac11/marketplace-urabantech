@@ -44,13 +44,13 @@ function TabPanel(props) {
                 <Box paddingLeft="16px" marginTop="16px">
                     <div style={{display: "flex", height: "200px", justifyContent: "space-between"}}>
                         <div style={{width: "25%"}}>
-                            <ChartProvider chart={buildPieChartConfig("CPU", 64)}/>
+                            <ChartProvider chart={buildPieChartConfig("ЦПУ", 2, 4, "ядра")}/>
                         </div>
                         <div style={{width: "25%"}}>
-                            <ChartProvider chart={buildPieChartConfig("RAM", 22)}/>
+                            <ChartProvider chart={buildPieChartConfig("ОЗУ", 5.2, 4, "Гб")}/>
                         </div>
                         <div style={{width: "25%"}}>
-                            <ChartProvider chart={buildPieChartConfig("Load", 84)}/>
+                            <ChartProvider chart={buildPieChartConfig("ПЗУ", 7, 8, "Гб")}/>
                         </div>
                     </div>
                 </Box>
@@ -86,8 +86,11 @@ function TabPanel(props) {
                         </Typography>
                     </Box>
                 </Box>
-                <div style={{height: "100px", padding: "12px"}}>
+                <div style={{height: "200px", padding: "12px"}}>
                     <ChartProvider chart={buildActivityGraphProductMetrics()}/>
+                </div>
+                <div style={{height: "200px", padding: "12px"}}>
+                    <ChartProvider chart={buildPriceGraph()}/>
                 </div>
             </Container>
         }
@@ -214,7 +217,8 @@ function a11yProps(index) {
     };
 }
 
-function buildPieChartConfigProductMetrics(name, percentage) {
+
+function buildPieChartConfig(name, value, oppositeValue, label) {
     return {
         chart: {
             type: 'pie',
@@ -230,7 +234,7 @@ function buildPieChartConfigProductMetrics(name, percentage) {
             }
         },
         title: {
-            text: `${name}: ${percentage}%`,
+            text: `${name}: ${value} ${label}`,
             align: 'center',
             verticalAlign: 'middle',
             y: 14
@@ -247,56 +251,12 @@ function buildPieChartConfigProductMetrics(name, percentage) {
                 {
                     name: 'no',
                     color: '#d1d1d1',
-                    y: 100 - percentage
+                    y: oppositeValue
                 },
                 {
                     name: name,
                     color: '#2e7ad8',
-                    y: percentage
-                }]
-        }]
-    }
-}
-
-function buildPieChartConfig(name, percentage) {
-    return {
-        chart: {
-            type: 'pie',
-            height: 200
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    enabled: false,
-                    distance: -50,
-
-                }
-            }
-        },
-        title: {
-            text: `${name}: ${percentage}%`,
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 14
-        },
-        tooltip: {
-            headerFormat: ''
-        },
-        series: [{
-            minPointSize: 1,
-            innerSize: '85%',
-            zMin: 0,
-            name: name,
-            data: [
-                {
-                    name: 'no',
-                    color: '#d1d1d1',
-                    y: 100 - percentage
-                },
-                {
-                    name: name,
-                    color: '#2e7ad8',
-                    y: percentage
+                    y: value
                 }]
         }]
     }
@@ -352,6 +312,61 @@ function buildActivityGraphProductMetrics() {
         series: [{
             type: 'area',
             name: 'Активность',
+            data: activityData
+        }]
+    }
+}
+
+function buildPriceGraph() {
+    return {
+        chart: {
+            zoomType: 'x',
+            height: 200
+        },
+        title: {
+            text: "График изменения цены"
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Цена'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'Цена',
             data: activityData
         }]
     }

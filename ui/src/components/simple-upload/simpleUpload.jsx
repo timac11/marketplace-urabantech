@@ -3,6 +3,7 @@ import { post } from 'axios';
 import "./simpleUpload.css"
 import UploadButton from "../uploadButton/uploadButton";
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography/Typography";
 
 class SimpleReactFileUpload extends React.Component {
 
@@ -48,9 +49,9 @@ class SimpleReactFileUpload extends React.Component {
 
         return (
             <form onSubmit={this.onFormSubmit}>
-                <Box fontSize="h4.fontSize">
-                    <div className="upload-file-header">Добавление файла</div>
-                </Box>
+                <Typography variant="h6" gutterBottom>
+                    Загрузка файла
+                </Typography>
                 <div className="upload-btn-wrapper">
                     <UploadButton/>
                     <input type="file" onChange={this.onChange} name="myfile"/>
