@@ -32,28 +32,36 @@ const stubData = [
         type: 'библиотека'
     },
     {
-        averageRate: 4,
+        averageRate: 5,
         id: 2,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
+        description: 'Эта библиотека генерирует лица несуществующих людей в хорошем качестве.',
         type: 'библиотека'
     },
     {
-        averageRate: 4,
+        averageRate: 1,
         id: 3,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        type: 'библиотека'
+        description: 'В этом проекте реализован мессенджер с высокой степенью шифрования.',
+        type: 'продукт'
+    },
+    {
+        averageRate: 5,
+        id: 4,
+        cost: 100000,
+        avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
+        description: 'Этот проект является частью регулирующей системы электроэнергетической компании. Продается в связи с аварией на электростанции.',
+        type: 'продукт'
     },
     {
         averageRate: 4,
         id: 4,
         cost: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
-        description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
-        type: 'библиотека'
+        description: 'Здесь реализована платорфма для заказа различных товаров в интернете.',
+        type: 'продуки'
     }
 ]
 
