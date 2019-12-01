@@ -1,6 +1,7 @@
 import React from 'react';
 import IntegratorWorkshop from "../pages/integrator-workshop/IntegratorWorkshop";
 import {Box, makeStyles} from "@material-ui/core";
+import ListOfProducts from "../components/ListOfProducts/ListOfProducts";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -13,13 +14,25 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const MainContent = () => {
+const mapRoleToMainContent = (role, rest) => {
+    switch (role) {
+        case 'integrator':
+            return <IntegratorWorkshop callback={rest} />
+        case 'customer':
+            return  <ListOfProducts/>
+        default:
+            return null
+    }
+}
+
+const MainContent = ({callback}) => {
     const classes = useStyles()
 
     return (
         <Box className={classes.content}>
-            {/*<ListOfProducts/>*/}
-            <IntegratorWorkshop/>
+            {
+                mapRoleToMainContent(localStorage.getItem('role'), callback)
+            }
         </Box>
     )
 };

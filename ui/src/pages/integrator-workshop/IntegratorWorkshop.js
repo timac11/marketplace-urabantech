@@ -1,9 +1,9 @@
 import React from 'react';
-import {QuoteApp} from "./example";
+import {Example} from "./example";
 
-function IntegratorWorkshop() {
+function IntegratorWorkshop({callback}) {
 
-    return <QuoteApp />
+    return <Example callback={callback} />
 }
 
 export default IntegratorWorkshop;

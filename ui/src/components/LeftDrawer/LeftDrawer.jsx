@@ -28,7 +28,7 @@ function LeftDrawer({id}) {
             <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
                 <Avatar/>
                 <Typography>
-                    Иван Победоносный
+                    Антон Печеркин
                 </Typography>
             </Box>
             <Divider/>

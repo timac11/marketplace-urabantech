@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {ThemeProvider} from '@material-ui/styles';
+import {MuiThemeProvider} from '@material-ui/core';
 import theme from "./theme/theme";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {TreeRootRouter} from "./routes/TreeRouter/TreeRootRouter";
@@ -18,10 +18,10 @@ function App() {
 
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
         <CssBaseline/>
         <App />
-    </ThemeProvider>,
+    </MuiThemeProvider>,
     document.getElementById('app')
 );
 
