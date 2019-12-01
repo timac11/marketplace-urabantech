@@ -16,7 +16,8 @@ import ReactTerminal from 'react-terminal-component';
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        padding: "12px"
+        padding: "12px",
+        marginBottom: '40px'
     },
     button: {
         marginRight: theme.spacing(1),
@@ -37,9 +38,9 @@ const useStyles = makeStyles(theme => ({
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
 
-    if (!index) {
-        return (
-            <Container hidden={value !== index}>
+    switch (index) {
+        case 1:
+            return <Container hidden={value !== index}>
                 <Box paddingLeft="16px" marginTop="16px">
                     <div style={{display: "flex", height: "200px", justifyContent: "space-between"}}>
                         <div style={{width: "25%"}}>
@@ -57,21 +58,51 @@ function TabPanel(props) {
                     <ChartProvider chart={buildActivityGraph()}/>
                 </div>
             </Container>
-        )
+        case 0: {
+            return <Container hidden={value !== index}>
+                <Box display={'flex'} p={2} mt={2} justifyContent={'space-between'} >
+                    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} >
+                        <Typography>
+                            Дата загрузки:
+                        </Typography>
+                        <Typography>
+                            <b>{new Date().toLocaleDateString()}</b>
+                        </Typography>
+                    </Box>
+                    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} >
+                        <Typography>
+                            Дата последнего обновления:
+                        </Typography>
+                        <Typography>
+                            <b>{new Date().toLocaleDateString()}</b>
+                        </Typography>
+                    </Box>
+                    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} >
+                        <Typography>
+                            Суммарное кол-во скачиваний:
+                        </Typography>
+                        <Typography>
+                            <b>32</b>
+                        </Typography>
+                    </Box>
+                </Box>
+                <div style={{height: "100px", padding: "12px"}}>
+                    <ChartProvider chart={buildActivityGraphProductMetrics()}/>
+                </div>
+            </Container>
+        }
+        default:
+            return <Box
+                component="div"
+                role="tabpanel"
+                hidden={value !== index}
+                id={`full-width-tabpanel-${index}`}
+                aria-labelledby={`full-width-tab-${index}`}
+                {...other}
+            >
+                <Box p={3}>{children}</Box>
+            </Box>
     }
-
-    return (
-        <Box
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`full-width-tabpanel-${index}`}
-            aria-labelledby={`full-width-tab-${index}`}
-            {...other}
-        >
-            <Box p={3}>{children}</Box>
-        </Box>
-    );
 }
 
 const mapButtonstateToButton = (state, onClick) => {
@@ -146,8 +177,8 @@ export function Details() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="Технические параметры" {...a11yProps(0)}/>
-                    <Tab label="Продуктовые характеристики" {...a11yProps(1)}/>
+                    <Tab label="Продуктовые характеристики" {...a11yProps(0)}/>
+                    <Tab label="Технические параметры" {...a11yProps(1)}/>
                     <Tab disabled={buyState !== 2} label="Терминал " {...a11yProps(2)}/>
                 </Tabs>
             </AppBar>
@@ -155,7 +186,7 @@ export function Details() {
                 Item One
             </TabPanel>
             <TabPanel value={activeTab} index={1} dir={theme.direction}>
-                Item Two
+
             </TabPanel>
             <TabPanel value={activeTab} index={2} dir={theme.direction}>
                 <Box>
@@ -181,6 +212,50 @@ function a11yProps(index) {
         id: `full-width-tab-${index}`,
         'aria-controls': `full-width-tabpanel-${index}`,
     };
+}
+
+function buildPieChartConfigProductMetrics(name, percentage) {
+    return {
+        chart: {
+            type: 'pie',
+            height: 200
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: false,
+                    distance: -50,
+
+                }
+            }
+        },
+        title: {
+            text: `${name}: ${percentage}%`,
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 14
+        },
+        tooltip: {
+            headerFormat: ''
+        },
+        series: [{
+            minPointSize: 1,
+            innerSize: '85%',
+            zMin: 0,
+            name: name,
+            data: [
+                {
+                    name: 'no',
+                    color: '#d1d1d1',
+                    y: 100 - percentage
+                },
+                {
+                    name: name,
+                    color: '#2e7ad8',
+                    y: percentage
+                }]
+        }]
+    }
 }
 
 function buildPieChartConfig(name, percentage) {
@@ -227,6 +302,61 @@ function buildPieChartConfig(name, percentage) {
     }
 }
 
+function buildActivityGraphProductMetrics() {
+    return {
+        chart: {
+            zoomType: 'x',
+            height: 200
+        },
+        title: {
+            text: "Востребованность продукта"
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Кол-во скачиваний'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'Активность',
+            data: activityData
+        }]
+    }
+}
+
 function buildActivityGraph() {
     return {
         chart: {
@@ -234,14 +364,14 @@ function buildActivityGraph() {
             height: 200
         },
         title: {
-            text: "График изменений"
+            text: "График активности разработчика"
         },
         xAxis: {
             type: 'datetime'
         },
         yAxis: {
             title: {
-                text: 'Изменения'
+                text: 'Кол-во изменений'
             }
         },
         legend: {
