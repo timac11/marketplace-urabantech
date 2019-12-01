@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Typography} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import numberSeparator from "../../../utils/numberSeparator";
 
 function Integrator({content}) {
+    const [label, setLabel] = useState('Разместить на маркетплейс')
+
     console.log(content);
     return (
         <Box display={'flex'} flexDirection={'column'} position={'relative'}>
@@ -61,8 +63,8 @@ function Integrator({content}) {
                     </Typography>
                     <br />
                     <Box justifySelf={'flex-end'} alignSelf={'center'} >
-                        <Button color={"primary"} variant={"contained"}>
-                            Разместить на маркетплейс
+                        <Button color={"primary"} variant={"contained"} disabled={label !== 'Разместить на маркетплейс'} onClick={() => setLabel('Размещено')}>
+                            {label}
                         </Button>
                     </Box>
                 </>
