@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "../../dashboard/login";
-import Main from "../../dashboard/main";
+import Main from "../../components/uploadFile/fileUpload";
 import {Details} from "../../dashboard/details";
 import MainPage from "../../pages/main-page/MainPage";
 
