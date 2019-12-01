@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {DialogContent, makeStyles, useTheme} from "@material-ui/core";
+import {makeStyles, useTheme} from "@material-ui/core";
 import ChartProvider from "../components/chart/ChartProvider";
 import Typography from "@material-ui/core/Typography/Typography";
 import Rating from '@material-ui/lab/Rating';
@@ -11,7 +11,6 @@ import Container from "@material-ui/core/Container/Container";
 import {activityData} from "../stabs/stabFile";
 import Button from "@material-ui/core/Button";
 import ReactTerminal from 'react-terminal-component';
-import Dialog from "@material-ui/core/Dialog";
 
 
 const useStyles = makeStyles(theme => ({
@@ -90,10 +89,7 @@ const mapButtonstateToButton = (state, onClick) => {
             </Button>
         }
         case 2: {
-            return <Button variant={"contained"} color={"default"} fullWidth={true}
-                           onClick={onClick}>
-                Подключиться&nbsp;по&nbsp;SSH
-            </Button>
+            return null;
         }
     }
 }
@@ -114,17 +110,6 @@ export function Details() {
 
     return (
         <div className={classes.root}>
-            <Dialog
-                open={showTerminal}
-                onClose={() => setShowTerminal(false)}
-                aria-labelledby="draggable-dialog-title"
-            >
-                <Box
-                    className={classes.terminal}
-                >
-                    <ReactTerminal/>
-                </Box>
-            </Dialog>
             <Box paddingLeft="16px" m={2} display={'flex'} justifyContent={'space-evenly'} >
                 <Box mb={2}>
                     <Typography variant="h5" paragraph={true}>Библиотека обработки зашумленного звука</Typography>
@@ -163,6 +148,7 @@ export function Details() {
                 >
                     <Tab label="Технические параметры" {...a11yProps(0)}/>
                     <Tab label="Продуктовые характеристики" {...a11yProps(1)}/>
+                    <Tab disabled={buyState !== 2} label="Терминал " {...a11yProps(2)}/>
                 </Tabs>
             </AppBar>
             <TabPanel value={activeTab} index={0} dir={theme.direction}>
@@ -170,6 +156,21 @@ export function Details() {
             </TabPanel>
             <TabPanel value={activeTab} index={1} dir={theme.direction}>
                 Item Two
+            </TabPanel>
+            <TabPanel value={activeTab} index={2} dir={theme.direction}>
+                <Box>
+                    {
+                        buyState === 0 || buyState === 1 ? <Typography>
+                            Вы ещё не купили продукт
+                        </Typography> : <Box>
+                            {showTerminal && <ReactTerminal/>}
+                            {!showTerminal && <Button variant={"contained"} color={"default"} fullWidth={true}
+                                                      onClick={() => setShowTerminal(true)}>
+                                Подключиться&nbsp;по&nbsp;SSH
+                            </Button>}
+                        </Box>
+                    }
+                </Box>
             </TabPanel>
         </div>
     )
