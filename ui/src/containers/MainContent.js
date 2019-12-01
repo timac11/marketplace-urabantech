@@ -2,6 +2,7 @@ import React from 'react';
 import IntegratorWorkshop from "../pages/integrator-workshop/IntegratorWorkshop";
 import {Box, makeStyles} from "@material-ui/core";
 import ListOfProducts from "../components/ListOfProducts/ListOfProducts";
+import ListOfProductsForDeveloper from "../components/ListOfProductsForDeveloper/ListOfProducts";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -20,6 +21,8 @@ const mapRoleToMainContent = (role, rest) => {
             return <IntegratorWorkshop callback={rest} />
         case 'customer':
             return  <ListOfProducts/>
+        case 'developer':
+            return <ListOfProductsForDeveloper/>
         default:
             return null
     }

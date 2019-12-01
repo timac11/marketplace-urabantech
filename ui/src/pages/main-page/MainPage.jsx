@@ -1,17 +1,7 @@
 import React, {useState} from 'react';
-import {Box} from "@material-ui/core";
+import {Box, makeStyles} from "@material-ui/core";
 import PropTypes from 'prop-types';
-import LeftDrawer from "../../components/LeftDrawer/LeftDrawer";
 import RightDrawer from "../../components/RightDrawer/RightDrawer";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import {Search} from "@material-ui/icons";
-import {NavLink} from "react-router-dom";
-import Button from "@material-ui/core/Button/Button";
-import FullScreenDialog from "../../components/dialog/Dialog";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -76,6 +66,7 @@ const stubData = [
 ]
 import MainContent from "../../containers/MainContent";
 import {products} from "../integrator-workshop/example";
+import LeftDrawer from "../../components/LeftDrawer/LeftDrawer";
 
 const MainPage = ({id}) => {
     const [rightDrawerContent, setRightDrawerContent] = useState({})
@@ -112,7 +103,7 @@ const MainPage = ({id}) => {
 
     return (
         <Box display={'flex'} >
-            <RightDrawer id={id}/>
+            <LeftDrawer id={id}/>
             <MainContent callback={handleCallback} />
             <RightDrawer content={rightDrawerContent} id={id}/>
         </Box>
