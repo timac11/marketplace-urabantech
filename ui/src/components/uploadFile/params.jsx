@@ -10,6 +10,9 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Box from "@material-ui/core/Box";
+import {CircularProgress} from "@material-ui/core";
+import Loader from "./Loader";
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -128,6 +131,9 @@ export default function Params() {
                         </Grid>
                     ))}
                 </Grid>
+                <Box m={2} display={'flex'} justifyContent={'center'} >
+                    <Loader/>
+                </Box>
             </Container>
         </React.Fragment>
     );

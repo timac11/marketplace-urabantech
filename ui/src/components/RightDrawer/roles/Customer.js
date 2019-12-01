@@ -75,7 +75,7 @@ function Customer(props) {
             </Box>
             <Divider/>
             <br />
-            <Box alignSelf={'center'}>
+            <Box alignSelf={'center'} >
                 <Button variant={"contained"} color={"primary"}>
                     Применить
                 </Button>
