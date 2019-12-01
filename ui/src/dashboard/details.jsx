@@ -61,7 +61,7 @@ function TabPanel(props) {
     }
 
     return (
-        <Typography
+        <Box
             component="div"
             role="tabpanel"
             hidden={value !== index}
@@ -70,7 +70,7 @@ function TabPanel(props) {
             {...other}
         >
             <Box p={3}>{children}</Box>
-        </Typography>
+        </Box>
     );
 }
 

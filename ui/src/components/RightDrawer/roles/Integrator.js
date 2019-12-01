@@ -3,6 +3,7 @@ import {Typography} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import numberSeparator from "../../../utils/numberSeparator";
 
 function Integrator({content}) {
     console.log(content);
@@ -31,7 +32,7 @@ function Integrator({content}) {
                         Итоговая стоимость набора:
                     </Typography>
                     <Typography variant={"h6"}>
-                        <b>{content.sum}&nbsp;₽</b>
+                        <b>{numberSeparator(content.sum)}&nbsp;₽</b>
                     </Typography>
                     <Divider />
                     <br />

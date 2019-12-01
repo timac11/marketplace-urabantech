@@ -26,7 +26,7 @@ const stubData = [
     {
         averageRate: 4,
         id: 1,
-        cost: 100000,
+        price: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Данный продукт представляет собой библиотеку для обработки звуковых файлов.',
         type: 'библиотека'
@@ -34,7 +34,7 @@ const stubData = [
     {
         averageRate: 5,
         id: 2,
-        cost: 100000,
+        price: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Эта библиотека генерирует лица несуществующих людей в хорошем качестве.',
         type: 'библиотека'
@@ -42,7 +42,7 @@ const stubData = [
     {
         averageRate: 1,
         id: 3,
-        cost: 100000,
+        price: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'В этом проекте реализован мессенджер с высокой степенью шифрования.',
         type: 'продукт'
@@ -50,7 +50,7 @@ const stubData = [
     {
         averageRate: 5,
         id: 4,
-        cost: 100000,
+        price: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Этот проект является частью регулирующей системы электроэнергетической компании. Продается в связи с аварией на электростанции.',
         type: 'продукт'
@@ -58,7 +58,7 @@ const stubData = [
     {
         averageRate: 4,
         id: 4,
-        cost: 100000,
+        price: 100000,
         avatarSrc: 'https://thefinanser.com/wp-content/uploads/2019/10/Product.png',
         description: 'Здесь реализована платорфма для заказа различных товаров в интернете.',
         type: 'продуки'
