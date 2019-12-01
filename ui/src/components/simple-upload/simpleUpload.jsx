@@ -49,7 +49,7 @@ class SimpleReactFileUpload extends React.Component {
         return (
             <form onSubmit={this.onFormSubmit}>
                 <Box fontSize="h4.fontSize">
-                    <div className="upload-file-header">File Upload</div>
+                    <div className="upload-file-header">Добавление файла</div>
                 </Box>
                 <div className="upload-btn-wrapper">
                     <UploadButton/>
@@ -69,7 +69,7 @@ class SimpleReactFileUpload extends React.Component {
                         <div className="image-upload-wrap">
                             <input className="file-upload-input" type='file' onChange={this.onChange}/>
                             <div className="drag-text">
-                                Drag and drop a file or select add Image
+                                Выберите файл
                             </div>
                             <svg className="MuiSvgIcon-root upload-svg-icon makeStyles-rightIcon-9" focusable="false" viewBox="0 0 24 24"
                                  aria-hidden="true" role="presentation">

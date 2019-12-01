@@ -10,6 +10,8 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {Search} from "@material-ui/icons";
 import {NavLink} from "react-router-dom";
+import Button from "@material-ui/core/Button/Button";
+import FullScreenDialog from "../../components/dialog/Dialog";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -19,6 +21,14 @@ const useStyles = makeStyles(theme => ({
         position: 'fixed',
         left: '20vw',
         borderTop: '1px solid rgba(0,0,0,0.5)'
+    },
+    toolbar: {
+        display: "flex"
+    },
+    createImageButton: {
+        height: "34px",
+        marginLeft: "12px",
+        marginTop: "14px"
     }
 }))
 
@@ -67,13 +77,14 @@ const stubData = [
 
 const MainPage = ({id}) => {
     const classes = useStyles()
+    const [openDialog, setOpenDialog] = React.useState(false);
 
     return (
         <Box display={'flex'} >
             <LeftDrawer id={id}/>
             <Box width={'60vw'} className={classes.content}>
-                <Box m={1}>
-                    <FormControl fullWidth={true}>
+                <Box className={classes.toolbar} m={1}>
+                    <FormControl m={1} fullWidth={true}>
                         <InputLabel htmlFor="input-with-icon-adornment">Поиск продуктов:</InputLabel>
                         <Input
                             id="input-with-icon-adornment"
@@ -84,6 +95,12 @@ const MainPage = ({id}) => {
                             }
                         />
                     </FormControl>
+                    <Button className={classes.createImageButton}
+                            variant={"contained"}
+                            color={"secondary"}
+                            onClick={() => setOpenDialog(true)}>
+                        Создать
+                    </Button>
                 </Box>
                 {
                     stubData.map((value, index) => (<NavLink to={`product/${value.id}`} key={index} style={{textDecoration: 'none'}}>
@@ -95,6 +112,7 @@ const MainPage = ({id}) => {
 
             </Box>
             <RightDrawer id={id}/>
+            <FullScreenDialog open={openDialog} handleClose={() => setOpenDialog(false)}/>
         </Box>
     );
 }

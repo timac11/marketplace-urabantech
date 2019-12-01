@@ -23,6 +23,10 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader', 'css-sprite-loader']
             },
+            {
+                test: /\.scss$/,
+                use: ['sass-loader']
+            },
             /*{
                 test: /\.css$/,
                 loader: 'style-loader'
