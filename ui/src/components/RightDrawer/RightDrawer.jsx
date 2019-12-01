@@ -11,7 +11,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
-        right: 0
+        right: 0,
+        overflowY: 'scroll',
+        paddingBottom: '100px'
     },
 }))
 

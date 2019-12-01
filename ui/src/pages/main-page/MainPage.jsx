@@ -94,7 +94,11 @@ const MainPage = ({id}) => {
 
                 sum: args.selected.map(value =>
                     +value.id.slice(5)
-                ).map(value2 => products[value2].price).reduce((prev, curr) => prev + curr, 0)
+                ).map(value2 => products[value2].price).reduce((prev, curr) => prev + curr, 0),
+
+                sum2: args.selected.map(value =>
+                    +value.id.slice(5)
+                ).map(value2 => products[value2].price2).reduce((prev, curr) => prev + curr, 0)
             })
         }
     }
