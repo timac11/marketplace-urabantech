@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const sourceRoot = path.resolve(__dirname, 'src');
 const CSSSpritePlugin = require('css-sprite-loader').Plugin;
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: sourceRoot + '/index.js',         //entryPoint to app to begin bilding
@@ -94,6 +95,9 @@ module.exports = {
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'static'
+        }),
+        new CompressionPlugin({
+            cache: true,
         })
     ]
 };
