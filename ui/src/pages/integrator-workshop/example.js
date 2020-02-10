@@ -355,7 +355,7 @@ export class Example extends Component {
                         <Button styles={{marginLeft: "8px"}}
                                 variant={"contained"}
                                 color={"secondary"}
-                                onClick={() => window.open('http://localhost:5000')}>
+                                onClick={() => window.open('http://35.184.188.51:5000')}>
                             Подобрать
                         </Button>
                     </Box>
