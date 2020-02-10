@@ -9,6 +9,9 @@ import Header from "./components/header/header";
 
 
 function App() {
+    if (!localStorage.getItem("role")) {
+        localStorage.setItem("role", "developer");
+    }
     return <Router>
         <Header/>
         <TreeRootRouter>
