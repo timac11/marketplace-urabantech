@@ -40,7 +40,7 @@ export default function FullScreenDialog(props) {
                             <CloseIcon/>
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
-                            Загрузка образа
+                            Загрузка демо
                         </Typography>
                         <Button className={classes.button} autoFocus color="inherit" onClick={props.handleClose}>
                             Загрузить

@@ -40,9 +40,10 @@ export const products = [
         cores: 2,
         performance: 2,
         memory: 20,
-        keywords: ['Sound', 'Music', 'MP3', 'Voice Recognition'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 1,
@@ -58,7 +59,8 @@ export const products = [
         memory: 10,
         keywords: ['ML', 'CV', 'Python'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 2,
@@ -74,7 +76,8 @@ export const products = [
         memory: 2,
         keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 5,
-        type: 'продукт'
+        type: 'продукт',
+        company: "ООО Солярис"
     },
     {
         id: 3,
@@ -90,7 +93,8 @@ export const products = [
         memory: 60,
         keywords: ['AI', 'ML', 'CV', 'Python', 'C++'],
         averageRate: 3,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 4,
@@ -104,9 +108,10 @@ export const products = [
         cores: 1,
         performance: 1,
         memory: 10,
-        keywords: ['Energetics', 'Radiotechnics', 'ML', 'C', 'C++'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 2,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 5,
@@ -120,9 +125,10 @@ export const products = [
         cores: 2,
         performance: 2,
         memory: 20,
-        keywords: ['A', 'D', 'C', 'D', 'E', 'R'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 6,
@@ -136,9 +142,10 @@ export const products = [
         cores: 2,
         performance: 2,
         memory: 20,
-        keywords: ['A', 'D', 'C', 'D', 'E', 'R'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 7,
@@ -152,9 +159,10 @@ export const products = [
         cores: 2,
         performance: 2,
         memory: 20,
-        keywords: ['A', 'D', 'C', 'D', 'E', 'R'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 8,
@@ -168,9 +176,10 @@ export const products = [
         cores: 2,
         performance: 2,
         memory: 20,
-        keywords: ['A', 'D', 'C', 'D', 'E', 'R'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
     {
         id: 9,
@@ -184,9 +193,10 @@ export const products = [
         cores: 2,
         performance: 2,
         memory: 20,
-        keywords: ['A', 'D', 'C', 'D', 'E', 'R'],
+        keywords: ['Cryptography', 'Python', 'HTML'],
         averageRate: 4,
-        type: 'библиотека'
+        type: 'библиотека',
+        company: "ООО Солярис"
     },
 ]
 

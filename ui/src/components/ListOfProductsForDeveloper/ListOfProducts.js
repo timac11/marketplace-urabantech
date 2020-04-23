@@ -25,10 +25,14 @@ const useStyles = makeStyles(theme => ({
     toolbar: {
         display: "flex"
     },
+    searchField: {
+        flexGrow: 1
+    },
     createImageButton: {
         height: "34px",
         marginLeft: "12px",
-        marginTop: "14px"
+        marginTop: "14px",
+        width: "180px"
     }
 }))
 
@@ -38,8 +42,8 @@ const ListOfProductsForDeveloper = () => {
     return (
         <>
             <Box display="flex" m={1}>
-                <FormControl fullWidth={true}>
-                    <InputLabel htmlFor="input-with-icon-adornment">Поиск продуктов:</InputLabel>
+                <FormControl className={classes.searchField}>
+                    <InputLabel htmlFor="input-with-icon-adornment">Поиск компаний заказчиков:</InputLabel>
                     <Input
                         id="input-with-icon-adornment"
                         startAdornment={
@@ -52,8 +56,14 @@ const ListOfProductsForDeveloper = () => {
                 <Button className={classes.createImageButton}
                         variant={"contained"}
                         color={"secondary"}
+                >
+                    Поиск
+                </Button>
+                <Button className={classes.createImageButton}
+                        variant={"contained"}
+                        color={"secondary"}
                         onClick={() => setOpenDialog(true)}>
-                    Создать
+                    Добавить демо
                 </Button>
             </Box>
             {

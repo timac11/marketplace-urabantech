@@ -39,7 +39,7 @@ function LeftDrawer({id}) {
             <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
                 <Avatar src={User}/>
                 <Typography>
-                    <b>Антон Печеркин</b>
+                    <b>Анна Чухнина</b>
                 </Typography>
                 <Typography variant={"caption"}>
                         ({mapRoleToString[localStorage.getItem('role')]})
@@ -48,7 +48,7 @@ function LeftDrawer({id}) {
             <Divider/>
             <Box p={2}>
                 <Typography>
-                    Интересующие технологии
+                    Стек технологий
                 </Typography>
                 <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} mt={1} >
                     {

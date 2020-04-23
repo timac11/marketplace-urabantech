@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const ProductCard = ({avatarSrc, description, price: cost, averageRate, type, keywords}) => {
+const ProductCard = ({avatarSrc, description, price: cost, averageRate, type, keywords, company}) => {
     const classes = useStyles()
 
     return (
@@ -45,7 +45,7 @@ const ProductCard = ({avatarSrc, description, price: cost, averageRate, type, ke
                                 <Typography>
                                     <b>Описание:</b>
                                 </Typography>
-                                <Box ml={1}>
+                                <Box>
                                     <Typography variant={"body2"}>
                                         {description}
                                     </Typography>
@@ -53,7 +53,7 @@ const ProductCard = ({avatarSrc, description, price: cost, averageRate, type, ke
                             </Box>
                             <Box mx={1}>
                                 <Typography>
-                                    <b>Тип:</b>&nbsp;{type}
+                                    <b>Компания:</b>&nbsp;{company}
                                 </Typography>
                             </Box>
                         </Box>
@@ -79,7 +79,7 @@ const ProductCard = ({avatarSrc, description, price: cost, averageRate, type, ke
                 </Box>
                 <Box>
                     <Typography>
-                        Ключевые слова:
+                        Требуемые компетенции
                     </Typography>
                     <Box p={1} display={'flex'} flexWrap={'wrap'} >
                         {

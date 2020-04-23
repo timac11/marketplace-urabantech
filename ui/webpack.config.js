@@ -93,9 +93,9 @@ module.exports = {
             filename: 'index.html',
             template: './src/index.html'
         }),
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'static'
-        }),
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'static'
+        // }),
         new CompressionPlugin({
             cache: true,
         })

@@ -60,7 +60,7 @@ const Header = () => {
                     <MenuItem value={"customer"}>Покупатель</MenuItem>
                     <MenuItem value={"integrator"}>Заказчик</MenuItem>
                 </Select>
-                <div className="user-name">Антон Печеркин</div>
+                <div className="user-name">Анна Чухнина</div>
                 <img className="user-photo" src={User}/>
                 <div className="logout-button"
                      onClick={() => logout()}
