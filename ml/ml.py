@@ -204,7 +204,27 @@ def get_require_workers():
     mobile = check_require_skills(keywords, mobile_words)
     design = check_require_skills(keywords, design_words)
 
-    return render_template('requirements.html', title=title, body=body, data_scientist=data_scientist, backend=backend, frontend=frontend, mobile=mobile, design=design)
+    data = []
+
+    if (data_scientist == True):
+        data.append("Data scientist (Python, R, machine learning methods)")
+
+    if (backend == True):
+        data.append("Backend developer (Python/PHP, MySQL/PostreSQL/MongoDB)")
+
+    if (frontend == True):
+        data.append("Frontend developer (Javascript, React.js/Vue.js, HTML, CSS)")
+
+    if (mobile == True):
+        data.append("Mobile developer (IOS/Android/React Native)")
+
+    if (design == True):
+        data.append("Designer (Adobe Photoshop, Figma, Sketch)")
+
+    if (data == None):
+        data.append("There is no such specialiost")
+
+    return json.dumps(data)
 
 @app.route("/")
 def startpage():
