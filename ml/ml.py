@@ -4,30 +4,32 @@ import json
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from flask import Flask, jsonify, request, render_template, redirect, url_for
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 def pre_process(text):
-    
+
     # lowercase
     text=text.lower()
-    
+
     #remove tags
     text=re.sub("</?.*?>"," <> ",text)
-    
+
     # remove special characters and digits
     text=re.sub("(\\d|\\W)+"," ",text)
-    
+
     return text
-    
+
 def get_stop_words(stop_file_path):
     """load stop words """
-    
+
     with open(stop_file_path, 'r', encoding="utf-8") as f:
         stopwords = f.readlines()
         stop_set = set(m.strip() for m in stopwords)
-        return frozenset(stop_set)    
+        return frozenset(stop_set)
 
 def sort_coo(coo_matrix):
     tuples = zip(coo_matrix.col, coo_matrix.data)
@@ -35,7 +37,7 @@ def sort_coo(coo_matrix):
 
 def extract_topn_from_vector(feature_names, sorted_items, topn=10):
     """get the feature names and tf-idf score of top n items"""
-    
+
     #use only topn items from vector
     sorted_items = sorted_items[:topn]
 
@@ -44,7 +46,7 @@ def extract_topn_from_vector(feature_names, sorted_items, topn=10):
 
     for idx, score in sorted_items:
         fname = feature_names[idx]
-        
+
         #keep track of feature name and its corresponding score
         score_vals.append(round(score, 3))
         feature_vals.append(feature_names[idx])
@@ -54,7 +56,7 @@ def extract_topn_from_vector(feature_names, sorted_items, topn=10):
     results= {}
     for idx in range(len(feature_vals)):
         results[feature_vals[idx]]=score_vals[idx]
-    
+
     return results
 
 def get_keywords(idx):
@@ -67,7 +69,7 @@ def get_keywords(idx):
 
     #extract only the top n; n here is 10
     keywords=extract_topn_from_vector(feature_names,sorted_items,10)
-    
+
     return keywords
 
 def print_results(idx,keywords):
@@ -78,14 +80,14 @@ def print_results(idx,keywords):
     print(docs_body[idx])
     print("\n===Keywords===")
     for k in keywords:
-        print(k,keywords[k])    
-        
+        print(k,keywords[k])
+
 def check_require_skills(keywords, skills):
     for k in keywords:
         for d in skills:
             if k == d:
-                return True 
-    return False        
+                return True
+    return False
 
 # read json into a dataframe
 df_idf=pd.read_json("static/data/stackoverflow-data-idf.json",lines=True)
@@ -103,11 +105,11 @@ df_idf['text'][2]
 #load a set of stop words
 stopwords=get_stop_words("static/resources/stopwords.txt")
 
-#get the text column 
+#get the text column
 docs=df_idf['text'].tolist()
 
-#create a vocabulary of words, 
-#ignore words that appear in 85% of documents, 
+#create a vocabulary of words,
+#ignore words that appear in 85% of documents,
 #eliminate stop words
 cv=CountVectorizer(max_df=0.85,stop_words=stopwords)
 word_count_vector=cv.fit_transform(docs)
@@ -136,7 +138,7 @@ df_test['text'] =df_test['text'].apply(lambda x:pre_process(x))
 docs_test=df_test['text'].tolist()
 docs_title=df_test['title'].tolist()
 docs_body=df_test['body'].tolist()
-  
+
 # you only needs to do this once
 feature_names=cv.get_feature_names()
 
@@ -187,7 +189,7 @@ def get_require_workers():
     docs_test=df_test['text'].tolist()
     docs_title=df_test['title'].tolist()
     docs_body=df_test['body'].tolist()
-    
+
     idx=0
     keywords=get_keywords(idx)
     print_results(idx,keywords)
@@ -230,7 +232,6 @@ def get_require_workers():
 def startpage():
     return render_template('index.html')
 
-            
-if __name__ == '__main__':
-    app.run(debug=True, host='localhost')
 
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
